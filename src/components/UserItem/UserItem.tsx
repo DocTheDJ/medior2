@@ -1,4 +1,6 @@
+'use client';
 import { ReactElement, ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
 import { Geo, User } from '@/shared/types';
 
 function UserInfoItem({ label, value }: { label: string, value: ReactNode }): ReactElement {
@@ -16,6 +18,7 @@ function getMapsPath(geo?: Geo): string {
 
 export function UserItem(props: { user: User }): ReactElement {
   const { user } = props;
+  const router = useRouter();
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-sm shadow-gray-light-1 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-gray">
@@ -46,7 +49,9 @@ export function UserItem(props: { user: User }): ReactElement {
         <UserInfoItem label="Bs" value={user.company?.bs} />
       </div>
 
-      <button className="w-full text-blue py-2 px-4 rounded-md transition duration-300 ease-in-out border border-blue hover:text-white hover:bg-blue">
+      <button className="w-full text-blue py-2 px-4 rounded-md transition duration-300 ease-in-out border border-blue hover:text-white hover:bg-blue"
+        onClick={(): void => router.push(`articles/${user.id}`)}
+      >
         Read articles
       </button>
     </div>
