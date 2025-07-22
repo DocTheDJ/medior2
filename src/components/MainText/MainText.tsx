@@ -36,7 +36,7 @@ const CustomLink = ({ children, ...props }: ICustomLink): ReactElement => {
       {...props}
       role={'link'}
       tabIndex={0}
-      style={{ color: 'green', cursor: 'pointer' }}
+      style={{ color: 'darkgreen', cursor: 'pointer', fontWeight: 'bold' }}
       onClick={handleClick}
       onKeyDown={(e): boolean => e.key === 'Enter' && handleClick()}
     >
