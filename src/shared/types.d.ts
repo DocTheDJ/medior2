@@ -1,3 +1,8 @@
+export type Geo = {
+  lat?: string,
+  lng?: string
+};
+
 export type User = {
   id: number,
   name?: string,
@@ -8,10 +13,7 @@ export type User = {
     suite?: string,
     city?: string,
     zipcode?: string,
-    geo?: {
-      lat?: string,
-      lng?: string
-    }
+    geo?: Geo
   },
   phone?: string,
   website?: string,
