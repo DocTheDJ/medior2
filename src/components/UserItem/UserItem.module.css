@@ -5,7 +5,9 @@
 }
 
 .card{
-  @apply bg-white rounded-xl shadow-lg p-6 w-full max-w-sm shadow-gray-light-1 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-gray
+  @apply bg-white rounded-xl shadow-lg p-6 w-full max-w-sm shadow-gray-light-1;
+  @apply transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-gray;
+  @apply flex flex-col h-full;
 }
 
 .title{
@@ -26,4 +28,8 @@
 
 .link{
   @apply text-blue text-sm no-underline hover:underline
+}
+
+.contentGrow {
+  @apply flex-grow;
 }

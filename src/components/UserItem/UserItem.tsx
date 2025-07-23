@@ -17,29 +17,31 @@ export function UserItem(props: { user: User }): ReactElement {
     <div className={style.card}>
       <h2 className={style.title}>{user.name}</h2>
 
-      <div className={style.block}>
-        <UserInfoItem label="Username" value={user.username} />
-        <UserInfoItem label="Email" value={user.email} />
-        <UserInfoItem label="Phone" value={user.phone} />
-        <UserInfoItem label="Website" value={user.website} />
-      </div>
-
-      <div className={style.block}>
-        <div className={style.blockHead}>
-          <h3 className={style.blockName}>Address</h3>
-          <a href={getMapsPath(user.address?.geo)} className={style.link}>Show on map</a>
+      <div className={style.contentGrow}>
+        <div className={style.block}>
+          <UserInfoItem label="Username" value={user.username} />
+          <UserInfoItem label="Email" value={user.email} />
+          <UserInfoItem label="Phone" value={user.phone} />
+          <UserInfoItem label="Website" value={user.website} />
         </div>
-        <UserInfoItem label="Street" value={user.address?.street} />
-        <UserInfoItem label="Suite" value={user.address?.suite} />
-        <UserInfoItem label="City" value={user.address?.city} />
-        <UserInfoItem label="Zipcode" value={user.address?.zipcode} />
-      </div>
 
-      <div className={style.block}>
-        <h3 className={style.blockName}>Company</h3>
-        <UserInfoItem label="Name" value={user.company?.name} />
-        <UserInfoItem label="Catch phrase" value={user.company?.catchPhrase} />
-        <UserInfoItem label="Bs" value={user.company?.bs} />
+        <div className={style.block}>
+          <div className={style.blockHead}>
+            <h3 className={style.blockName}>Address</h3>
+            <a href={getMapsPath(user.address?.geo)} className={style.link}>Show on map</a>
+          </div>
+          <UserInfoItem label="Street" value={user.address?.street} />
+          <UserInfoItem label="Suite" value={user.address?.suite} />
+          <UserInfoItem label="City" value={user.address?.city} />
+          <UserInfoItem label="Zipcode" value={user.address?.zipcode} />
+        </div>
+
+        <div className={style.block}>
+          <h3 className={style.blockName}>Company</h3>
+          <UserInfoItem label="Name" value={user.company?.name} />
+          <UserInfoItem label="Catch phrase" value={user.company?.catchPhrase} />
+          <UserInfoItem label="Bs" value={user.company?.bs} />
+        </div>
       </div>
 
       <ReadArticleButton user={user} />
