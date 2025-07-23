@@ -8,7 +8,7 @@ interface IProps {
 }
 
 // this is a helper type to be used in the context, its the result of 'useState'
-type UserState = [User | null, Dispatch<SetStateAction<User | null>>];
+type UserState = [Map<number, User> | null, Dispatch<SetStateAction<Map<number, User> | null>>];
 
 type UserContextType = {
   value: UserState | null,
@@ -21,7 +21,7 @@ const UserContext = createContext<UserContextType>({
 
 // create provider for the context and have it wrap around its children
 export const UserProvider = ({ children }: IProps): ReactNode => {
-  const state = useState<User | null>(null);
+  const state = useState<Map<number, User> | null>(null);
 
   const value = {
     value: state,

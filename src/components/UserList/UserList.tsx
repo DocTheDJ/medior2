@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { User } from '@/shared/types';
 import publicRuntimeConfig from '@/utils/config';
 import { download } from '@/utils/download';
+import { UsersTitle } from './UsersTitle';
 import { UserItem } from '../UserItem/UserItem';
 import style from './UserList.module.css';
 
@@ -12,7 +13,8 @@ export async function UserList(): Promise<ReactElement> {
   return (
     // put blocks in the column
     <div className={style.page}>
-      <h1 className={style.title}>Users</h1>
+      {/* <h1 className={style.title}>Users</h1> */}
+      <UsersTitle users={users}/>
       {/**
        * defined grid for the user items, and map them from the loaded list
        */}

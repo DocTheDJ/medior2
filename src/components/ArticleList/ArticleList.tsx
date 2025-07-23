@@ -32,7 +32,7 @@ export async function ArticleList({ user }: { user: string }): Promise<ReactElem
   return (
     <div className={style.page}>
       <h1 className={style.title}>Articles</h1>
-      <ListAuthor user={userData} />
+      <ListAuthor user={userData} id={user} />
       <div className="h-3"></div>
 
       <div className={style.list}>

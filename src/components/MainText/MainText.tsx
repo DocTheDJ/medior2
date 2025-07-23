@@ -3,6 +3,7 @@
 
 import { ReactElement } from 'react';
 import Markdown from 'markdown-to-jsx';
+import { useRouter } from 'next/navigation';
 
 // markdown text from the task assignment
 const markdownData = `
@@ -26,8 +27,10 @@ interface ICustomLink {
 // custom link replacement
 const CustomLink = ({ children, ...props }: ICustomLink): ReactElement => {
   // function to be called when the link is clicked
+  const router = useRouter();
   const handleClick = (): boolean => {
-    window.location.href = props.href;
+    // window.location.href = props.href;
+    router.push(props.href);
     return true;
   };
 
