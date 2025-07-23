@@ -1,0 +1,11 @@
+.wrapper{
+  @apply flex flex-row gap-12 items-center
+}
+
+.prefix{
+  @apply text-gray text-sm mb-0 opacity-60
+}
+
+.name{
+  @apply font-semibold opacity-60
+}

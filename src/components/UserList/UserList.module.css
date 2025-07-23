@@ -1,0 +1,11 @@
+.page{
+  @apply flex flex-col gap-3
+}
+
+.title{
+  @apply text-[2.25rem] font-bold mb-8 ml-4 text-gray
+}
+
+.list{
+  @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 justify-items-center
+}

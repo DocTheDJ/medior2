@@ -1,17 +1,8 @@
-'use client';
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement } from 'react';
 import { Geo, User } from '@/shared/types';
 import { ReadArticleButton } from '../UI/ButtonForArticle';
-
-// a helper component that defines the key value pair in the user card
-function UserInfoItem({ label, value }: { label: string, value: ReactNode }): ReactElement {
-  return (
-    <div className="flex text-gray text-sm">
-      <p className="font-medium w-24 flex-shrink-0 opacity-50">{label}</p>
-      <p className="text-ellipsis">{value}</p>
-    </div>
-  );
-}
+import { UserInfoItem } from './UserInfoItem/UserInfoItem';
+import style from './UserItem.module.css';
 
 // helper function to retrun modified string with geo location on the map
 // could use some different height on the map
@@ -23,20 +14,20 @@ export function UserItem(props: { user: User }): ReactElement {
   const { user } = props;
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-sm shadow-gray-light-1 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-gray">
-      <h2 className="text-2xl font-bold mb-4 mt-0">{user.name}</h2>
+    <div className={style.card}>
+      <h2 className={style.title}>{user.name}</h2>
 
-      <div className="mb-4">
+      <div className={style.block}>
         <UserInfoItem label="Username" value={user.username} />
         <UserInfoItem label="Email" value={user.email} />
         <UserInfoItem label="Phone" value={user.phone} />
         <UserInfoItem label="Website" value={user.website} />
       </div>
 
-      <div className="mb-4">
-        <div className="flex justify-between items-center mb-2">
-          <h3 className="text-lg font-semibold">Address</h3>
-          <a href={getMapsPath(user.address?.geo)} className="text-blue hover:underline text-sm no-underline">Show on map</a>
+      <div className={style.block}>
+        <div className={style.blockHead}>
+          <h3 className={style.blockName}>Address</h3>
+          <a href={getMapsPath(user.address?.geo)} className={style.link}>Show on map</a>
         </div>
         <UserInfoItem label="Street" value={user.address?.street} />
         <UserInfoItem label="Suite" value={user.address?.suite} />
@@ -44,8 +35,8 @@ export function UserItem(props: { user: User }): ReactElement {
         <UserInfoItem label="Zipcode" value={user.address?.zipcode} />
       </div>
 
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold mb-2">Company</h3>
+      <div className={style.block}>
+        <h3 className={style.blockName}>Company</h3>
         <UserInfoItem label="Name" value={user.company?.name} />
         <UserInfoItem label="Catch phrase" value={user.company?.catchPhrase} />
         <UserInfoItem label="Bs" value={user.company?.bs} />

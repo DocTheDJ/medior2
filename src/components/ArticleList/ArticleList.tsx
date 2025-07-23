@@ -5,17 +5,8 @@ import publicRuntimeConfig from '@/utils/config';
 import { download } from '@/utils/download';
 import { interpolateUrl } from '@/utils/replacement';
 import { ListAuthor } from './ListAuthor';
-
-// simple article card
-// could be its own file, but there is nothing important happening in it
-function ArticleCard({ article }: { article: Article }): ReactElement {
-  return (
-    <div className="bg-white rounded-2xl shadow-sm p-4 w-full max-w-sm transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105 rounded-xl shadow-gray-light-1">
-      <h2 className="text-xl font-bold text-black mb-3 mt-0">{article.title}</h2>
-      <p className="text-gray text-xs leading-relaxed whitespace-pre-line">{article.body}</p>
-    </div>
-  );
-}
+import { ArticleCard } from '../ArticleItem/ArticleItem';
+import style from './ArticleList.module.css';
 
 // article list function component
 export async function ArticleList({ user }: { user: string }): Promise<ReactElement> {
@@ -39,12 +30,12 @@ export async function ArticleList({ user }: { user: string }): Promise<ReactElem
   // that will return the user and their articles
 
   return (
-    <div className="min-h-screen p-8 font-sans">
-      <h1 className="text-xxl font-bold text-gray mb-2">Articles</h1>
+    <div className={style.page}>
+      <h1 className={style.title}>Articles</h1>
       <ListAuthor user={userData} />
       <div className="h-3"></div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+      <div className={style.list}>
         {articles.map((article, index) => (
           <ArticleCard key={index} article={article} />
         ))}

@@ -1,0 +1,29 @@
+@layer {
+  .max-w-sm {
+    max-width: 24rem;
+  }
+}
+
+.card{
+  @apply bg-white rounded-xl shadow-lg p-6 w-full max-w-sm shadow-gray-light-1 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-gray
+}
+
+.title{
+  @apply text-xxl font-bold mb-4 mt-0
+}
+
+.block{
+  @apply mb-4
+}
+
+.blockHead{
+  @apply flex justify-between items-center mb-2
+}
+
+.blockName{
+  @apply text-lg font-semibold
+}
+
+.link{
+  @apply text-blue text-sm no-underline hover:underline
+}

@@ -1,0 +1,17 @@
+@layer {
+  .font-medium {
+    font-weight: 500;
+  }
+}
+
+.wrapper{
+  @apply flex text-gray text-sm
+}
+
+.label{
+  @apply font-medium w-24 flex-shrink-0 opacity-50
+}
+
+.value{
+  @apply text-ellipsis
+}
