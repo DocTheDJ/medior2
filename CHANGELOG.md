@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Tomas Vitula
 ### Updated
 - Markdown in the Homepage, used as per documentation of markdown-to-jsx
+- Users list in Homepage
+
+### Added
+- Path to articles created by users
 
 ## [0.2.0] - 2025-05-16
 ### Authors

@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { headers } from 'next/headers';
 import { Article, User } from '@/shared/types';
 import publicRuntimeConfig from '@/utils/config';
+import { download } from '@/utils/download';
 import { interpolateUrl } from '@/utils/replacement';
 import { ListAuthor } from './ListAuthor';
 
@@ -19,16 +20,18 @@ export async function ArticleList({ user }: { user: string }): Promise<ReactElem
   const referer = headersList.get('referer');
   let userData;
   if (!referer) {
-    const data = await fetch(interpolateUrl(publicRuntimeConfig.userUrl, { useId: user }));
-    userData = (await data.json()) as User;
+    userData = await download<User | undefined>(
+      interpolateUrl(publicRuntimeConfig.userUrl, { useId: user }),
+      undefined);
   }
-  const data = await fetch(interpolateUrl(publicRuntimeConfig.articlesUrl, { useId: user }));
-  const articles: Array<Article> = await data.json();
+  const articles = await download<Array<Article>>(
+    interpolateUrl(publicRuntimeConfig.articlesUrl, { useId: user }),
+    []);
 
   return (
     <div className="min-h-screen p-8 font-sans">
       <h1 className="text-xxl font-bold text-gray mb-2">Articles</h1>
-      <ListAuthor user={userData}/>
+      <ListAuthor user={userData} />
       <div className="h-3"></div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">

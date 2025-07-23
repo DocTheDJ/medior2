@@ -1,16 +1,15 @@
 import { ReactElement } from 'react';
 import { User } from '@/shared/types';
 import publicRuntimeConfig from '@/utils/config';
+import { download } from '@/utils/download';
 import { UserItem } from '../UserItem/UserItem';
-import style from './UserList.module.css';
 
 export async function UserList(): Promise<ReactElement> {
-  const data = await fetch(publicRuntimeConfig.usersUrl);
-  const users: Array<User> = await data.json();
+  const users = await download<Array<User>>(publicRuntimeConfig.usersUrl, []);
   return (
-    <div className={style.base}>
-      <h1 className={style.title + ' text-gray-800'}>Users</h1>
-      <div className={style.list}>
+    <div className="flex flex-col gap-3">
+      <h1 className="text-xxl font-bold mb-8 ml-4 text-gray-800">Users</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 justify-items-center">
         {
           users.map((val: User, index: number) => <UserItem key={`user_${index}`} user={val} />)
         }
