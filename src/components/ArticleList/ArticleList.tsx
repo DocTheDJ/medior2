@@ -1,7 +1,9 @@
 import { ReactElement } from 'react';
-import { Article } from '@/shared/types';
+import { headers } from 'next/headers';
+import { Article, User } from '@/shared/types';
 import publicRuntimeConfig from '@/utils/config';
 import { interpolateUrl } from '@/utils/replacement';
+import { ListAuthor } from './ListAuthor';
 
 function ArticleCard({ article }: { article: Article }): ReactElement {
   return (
@@ -13,15 +15,20 @@ function ArticleCard({ article }: { article: Article }): ReactElement {
 }
 
 export async function ArticleList({ user }: { user: string }): Promise<ReactElement> {
+  const headersList = await headers();
+  const referer = headersList.get('referer');
+  let userData;
+  if (!referer) {
+    const data = await fetch(interpolateUrl(publicRuntimeConfig.userUrl, { useId: user }));
+    userData = (await data.json()) as User;
+  }
   const data = await fetch(interpolateUrl(publicRuntimeConfig.articlesUrl, { useId: user }));
   const articles: Array<Article> = await data.json();
 
   return (
     <div className="min-h-screen bg-gray-100 p-8 font-sans">
       <h1 className="text-4xl font-bold text-gray-800 mb-2 ml-4">Articles</h1>
-      {/* {articles[0].author && ( */}
-      <p className="text-gray-600 text-lg mb-8 ml-4">Author <span className="font-semibold">TOMAS</span></p>
-      {/* )} */}
+      <ListAuthor user={userData}/>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
         {articles.map((article, index) => (

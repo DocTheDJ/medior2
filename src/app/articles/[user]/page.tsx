@@ -6,7 +6,7 @@ async function Page({ params }: {
 }): Promise<ReactElement> {
   const { user } = await params;
   return (
-      <ArticleList user={user} />
+    <ArticleList user={user} />
   );
 }
 
