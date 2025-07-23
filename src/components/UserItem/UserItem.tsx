@@ -3,6 +3,7 @@ import { ReactElement, ReactNode } from 'react';
 import { Geo, User } from '@/shared/types';
 import { ReadArticleButton } from '../UI/ButtonForArticle';
 
+// a helper component that defines the key value pair in the user card
 function UserInfoItem({ label, value }: { label: string, value: ReactNode }): ReactElement {
   return (
     <div className="flex text-gray text-sm">
@@ -12,6 +13,8 @@ function UserInfoItem({ label, value }: { label: string, value: ReactNode }): Re
   );
 }
 
+// helper function to retrun modified string with geo location on the map
+// could use some different height on the map
 function getMapsPath(geo?: Geo): string {
   return `https://mapy.cz/turisticka?source=coor&id=${geo?.lng}%2C${geo?.lat}&x=${geo?.lng}&y=${geo?.lat}&z=16`;
 }

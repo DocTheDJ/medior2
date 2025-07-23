@@ -4,6 +4,8 @@ import { ReactElement } from 'react';
 import { User } from '@/shared/types';
 import { useUser } from '@/shared/UserContext';
 
+// this is the line that says the author at the top of the articles
+// it is 'use client' due to the fact that the context is needed
 export function ListAuthor({ user }: { user?: User }): ReactElement {
   const { value } = useUser();
   return (

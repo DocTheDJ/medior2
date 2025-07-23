@@ -6,6 +6,8 @@ import { download } from '@/utils/download';
 import { interpolateUrl } from '@/utils/replacement';
 import { ListAuthor } from './ListAuthor';
 
+// simple article card
+// could be its own file, but there is nothing important happening in it
 function ArticleCard({ article }: { article: Article }): ReactElement {
   return (
     <div className="bg-white rounded-2xl shadow-sm p-4 w-full max-w-sm transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105 rounded-xl shadow-gray-light-1">
@@ -15,18 +17,26 @@ function ArticleCard({ article }: { article: Article }): ReactElement {
   );
 }
 
+// article list function component
 export async function ArticleList({ user }: { user: string }): Promise<ReactElement> {
+  // need to get headers to find out how the user got to the page where this component is used
   const headersList = await headers();
   const referer = headersList.get('referer');
   let userData;
+  // is the referer is null it means that the page was loaded from anywhere
+  // and not from the root site by clicking on a button
   if (!referer) {
+    // therefore the user data must be downloaded
     userData = await download<User | undefined>(
       interpolateUrl(publicRuntimeConfig.userUrl, { useId: user }),
       undefined);
   }
+  // download user articles
   const articles = await download<Array<Article>>(
     interpolateUrl(publicRuntimeConfig.articlesUrl, { useId: user }),
     []);
+  // would be more efficient to prepare an endpoint in the api
+  // that will return the user and their articles
 
   return (
     <div className="min-h-screen p-8 font-sans">

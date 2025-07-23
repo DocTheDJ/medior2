@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 
+// nice blue loading spinner, can be used anywhere
 const LoadingSpinner = ({ message = 'Loading' }: { message?: string }): ReactElement => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">

@@ -1,8 +1,13 @@
+// definition of types that are used through the application
+// they can all be classes but that would mean mapping from any to instances
+
 export type Geo = {
   lat?: string,
   lng?: string
 };
 
+// user type could be broken down to other types
+// like address and company, but they are not needed separately
 export type User = {
   id: number,
   name?: string,
